@@ -34,7 +34,7 @@ export default function App() {
   return (
     <div className="bg-gray-900 py-12 flex min-h-svh flex-col items-center gap-10 text-white">
       <h1 className="mx-auto mt-2 text-center text-4xl font-semibold tracking-tight text-balance">
-        Shapes Outline
+        Shapes Outline Generator
       </h1>
 
       <div className="w-4xl rounded-xl p-1 inset-ring bg-white/10 inset-ring-white/10">
