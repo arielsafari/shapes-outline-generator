@@ -61,3 +61,30 @@ export function pointsToPolygon(
     )
     .join(", ");
 }
+
+export function getInvertedOutlinePoints(
+  startPoints: Point[],
+  endPoints: Point[],
+  canvasSize: CanvasSize
+): Point[] {
+  const outer: Point[] = [
+    { x: 0, y: 0 },
+    { x: 0, y: canvasSize.height },
+    { x: canvasSize.width, y: canvasSize.height },
+    { x: canvasSize.width, y: 0 },
+  ];
+
+  if (
+    !startPoints ||
+    startPoints.length === 0 ||
+    !endPoints ||
+    endPoints.length === 0
+  )
+    return outer;
+
+  let innerReversed = startPoints.slice();
+  innerReversed = innerReversed.concat(outer);
+  innerReversed = innerReversed.concat(endPoints.slice().reverse());
+
+  return innerReversed;
+}

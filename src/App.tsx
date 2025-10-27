@@ -1,7 +1,10 @@
 import PointsDisplay from "@/components/points-display";
 import RectanglesDisplay from "@/components/rectangles-display";
 import ShapeDisplay from "@/components/shape-display";
-import { getOutlinePoints } from "@/lib/outline-calculator";
+import {
+  getInvertedOutlinePoints,
+  getOutlinePoints,
+} from "@/lib/outline-calculator";
 import type { CanvasSize, Point, Rectangle } from "@/types";
 
 export default function App() {
@@ -20,6 +23,12 @@ export default function App() {
 
   const startPoints: Point[] = getOutlinePoints(startRectangles, canvasSize);
   const endPoints: Point[] = getOutlinePoints(endRectangles, canvasSize);
+
+  const invertedAreaPoints: Point[] = getInvertedOutlinePoints(
+    startPoints,
+    endPoints,
+    canvasSize
+  );
 
   return (
     <div className="bg-gray-900 py-12 flex min-h-svh flex-col items-center gap-10 text-white">
@@ -57,6 +66,12 @@ export default function App() {
 
             <ShapeDisplay canvasSize={canvasSize} points={startPoints} />
             <ShapeDisplay canvasSize={canvasSize} points={endPoints} />
+
+            <ShapeDisplay
+              canvasSize={canvasSize}
+              points={invertedAreaPoints}
+              patternDegrees={45}
+            />
           </div>
         </div>
       </div>
